@@ -5,6 +5,7 @@ $OpenClick = {
 	If (-not $global:Saved) {
 		$MakeNew = [Microsoft.VisualBasic.Interaction]::MsgBox("You are about to open a new Route. `n All unsaved changes will be lost `n Continue?", 'YesNo,Question', "Create New Route?")
 	}
+
 	If ($MakeNew -eq 'yes') {
 		# -- Ask use What file to open
 		$OpenChooser = New-Object -Typename System.Windows.Forms.OpenFileDialog
@@ -69,7 +70,6 @@ $OpenClick = {
 						Else {
 							$EndReadOnly = $False
 						}
-
 
 						$SysSetBox.Rows.Add($SystemName, $First, $Last)
 

@@ -131,7 +131,6 @@ $OptimizeRoute = {
 					If ($IsFirst -and $IsLast) {
 						If ($FirstSystem) {
 							$IsLast = $False
-
 						}
 						Else {
 							$IsFirst = $False

@@ -12,7 +12,6 @@ Function GetCoords($DataGridViewRow) {
 		$systemMetadata = Invoke-WebRequest $('https://www.edsm.net/api-v1/system?systemName={0}&showCoordinates=1' -f $($DataGridViewRow.Cells[0].Value)) -UseBasicParsing
 
 		If ($systemMetadata.content -match '{"name":"([^"]+)","coords":{"x":([\d.-]+),"y":([\d.-]+),"z":([\d.-]+)}') {
-
 			$X = $matches[2]
 			$Y = $matches[3]
 			$Z = $matches[4]

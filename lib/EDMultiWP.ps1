@@ -9,7 +9,6 @@ $global:Saved = $True
 . $Root_path\lib\GetCoords.ps1
 . $Root_path\lib\GetRouteLength.ps1
 . $Root_path\lib\UpdateRouteLength.ps1
-
 . $Root_path\lib\NewClick.ps1
 . $Root_path\lib\OpenClick.ps1
 . $Root_path\lib\SaveClick.ps1
@@ -98,7 +97,7 @@ $textBox.Location = New-Object System.Drawing.Point(40, 220)
 $textBox.Size = New-Object System.Drawing.Size(225, 25)
 $textBox.AutoCompleteMode = 'SuggestAppend'
 $textBox.AutoCompleteSource = 'CustomSource'
-Get-content $('{0}\{1}' -f $PSScriptRoot, 'systems.csv') | % { $textbox.AutoCompleteCustomSource.AddRange($_) }
+Get-content $('{0}\{1}' -f $PSScriptRoot, 'systems.csv') | ForEach-Object { $textbox.AutoCompleteCustomSource.AddRange($_) }
 $Form.Controls.Add($textBox)
 
 # -- Adding WP add button
@@ -144,6 +143,7 @@ ForEach ($group in $groups) {
 	$LocListBox.items.add($('--- {0} ---' -f $group)) | Out-Null
 	$LocListBox.items.add('') | Out-Null
 	$locs = $ComLocs | Where-Object { $_.group -eq $group }
+
 	ForEach ($loc in $locs) {
 		$LocListBox.items.add($('{0} - {1}' -f $loc.name, $loc.system)) | Out-Null
 	}
