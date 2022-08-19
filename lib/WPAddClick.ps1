@@ -1,9 +1,10 @@
 $WPAddClick = {
-
+	Add-Type -AssemblyName System.Web
 	$SystemName = $textBox.Text
-
+	$EncodedSystemName = [System.Web.HTTPUtility]::UrlEncode("{0}" -f $SystemName)
+	Write-Host ($EncodedSystemName)
 	If ($SystemName -ne '') {
-		$systemMetadata = Invoke-WebRequest $('https://www.edsm.net/api-v1/system?systemName={0}&showCoordinates=1' -f $SystemName) -UseBasicParsing
+		$systemMetadata = Invoke-WebRequest $('https://www.edsm.net/api-v1/system?systemName={0}&showCoordinates=1' -f $EncodedSystemName) -UseBasicParsing
 
 		If ($systemMetadata.content -match '{"name":"([^"]+)","coords":{"x":([\d.-]+),"y":([\d.-]+),"z":([\d.-]+)}') {
 
